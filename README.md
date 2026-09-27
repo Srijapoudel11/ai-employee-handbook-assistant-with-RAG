@@ -1,33 +1,57 @@
-# Project name
+# AI Study Assistant with RAG
 
 Starter template for the **Development of AI Applications** course final group project.
 
 ## Team members
 
-- Member 1 Name (email@example.com)
-- Member 2 Name (email@example.com)
-- Member 3 Name (email@example.com)
+- Poudel Srijan (srijan.poudel@student.hamk.fi )
+- Luitel Subham (email@example.com)
+- Imran Mohammad (email@example.com)
 
 ## Problem
 
 ### Intended users
-Who are the primary target users of this application?
+The primary users of this application are university students who
+study using lecture notes, course materials, and PDF documents.
+The application is especially useful for students who want to find
+information from their study materials quickly and understand
+difficult topics more easily.
 
 ### Problem statement
-What specific problem does this application solve for those users?
+Students often have long lecture notes and PDF documents that contain
+a large amount of information. Finding a specific answer from these
+materials can take time, and some topics can be difficult to understand.
+Our application will help students interact with their study materials
+by allowing them to ask questions and receive answers based on the
+content of their uploaded documents.
 
 ### Why AI is appropriate
-Why does this problem require AI / LLM capabilities rather than traditional deterministic software?
+Traditional search can find exact words or phrases, but students may
+ask questions in many different ways. An AI language model can
+understand natural-language questions, use relevant context from study
+materials, and generate understandable explanations.
+AI is therefore useful because the application needs to understand
+questions and produce helpful answers rather than only perform exact
+keyword matching.
 
 ## Solution
 
-Briefly describe your application, its primary value proposition, and how it addresses the problem statement above.
+Our solution is an AI Study Assistant that allows students to provide
+study materials and ask questions about them.
+The application will retrieve relevant information from the student's
+material and provide that information as context to an AI model. The
+model will then generate an understandable answer.
+This will help students find important information faster and make
+their study materials easier to understand.
 
 ## Main user workflow
 
-1. **User Input:** The user submits a prompt or query via the Gradio user interface.
-2. **Processing & Guardrails:** The application service layer (`src/services/ai_service.py`) validates and formats the request.
-3. **Model Response:** The model client calls Ollama locally and returns the response back through the service layer to the UI.
+1. **Provide Study Material:** The user provides study material through the Gradio user interface.
+2. **Ask a Question:** The user enters a question about the study material.
+3. **Processing & Guardrails:** The application service layer validates the request and processes the user's question.
+4. **Information Retrieval:** The RAG component searches the study material and retrieves relevant information.
+5. **Model Response:** The relevant information and question are passed to the local AI model through the service layer.
+6. **Answer:** The generated answer is returned to the user through the Gradio interface.
 
 ## Architecture
 
@@ -49,14 +73,14 @@ Ollama (Local LLM Server)
 
 ## Model
 
-- **Model used:** e.g., `llama3.2` (or specified local Ollama model)
-- **Selection rationale:** Why was this specific model chosen for your project (e.g., lightweight, performance, context size)?
+- **Model used:** `llama3.2` through Ollama
+- **Selection rationale:** We plan to start with llama3.2 because it can run locally through Ollama and is suitable for developing and testing our AI study assistant. The final model choice may be adjusted during development after testing.
 
 ## Additional AI capability
 
 Select at least one additional capability to implement for your final project:
 
-- [ ] RAG (Retrieval-Augmented Generation)
+- [x] RAG (Retrieval-Augmented Generation)
 - [ ] Tools / External API integration
 - [ ] Model Context Protocol (MCP)
 - [ ] Agentic workflow (Model-selected actions based on observations)
@@ -65,7 +89,14 @@ Select at least one additional capability to implement for your final project:
 - [ ] Other: ______________________
 
 ### Capability justification
-Explain why the selected capability is useful and necessary for your application's user problem.
+RAG is useful for our application because students need answers that
+are based on their own study materials.
+Instead of relying only on the AI model's general knowledge, the
+application will retrieve relevant information from the provided study
+material and give that information to the model as context.
+This should make the answers more relevant to the student's material
+and also allows the application to show which source information was
+used.
 
 ## Setup
 
@@ -127,14 +158,37 @@ pytest
 
 ## Evaluation
 
-Describe your evaluation methodology and summarize key results. Starter test cases can be found in [`evaluation/test_cases.json`](evaluation/test_cases.json).
+The application will be evaluated after implementation using different
+test cases to check whether it works correctly and provides useful
+answers based on the uploaded study materials.
+
+We plan to test:
+- Questions that can be answered from the uploaded document
+- Questions where the answer is not available in the document
+- Empty or invalid user input
+- Whether RAG retrieves relevant information
+- Whether the generated answer is related to the retrieved information
+- Error and failure scenarios
+
+Detailed evaluation results will be added after the application has
+been implemented and tested. Starter test cases can be found in [`evaluation/test_cases.json`](evaluation/test_cases.json).
 
 Refer to [`evaluation/README.md`](evaluation/README.md) for guidelines on defining success, edge cases, and failure scenarios.
 
 ## Known limitations
 
-- Highlight known system limitations, unhandled edge cases, or boundaries of current capabilities.
+- The project is currently in the proposal and early development stage.
+Known limitations will be documented after implementation and testing.
+Possible limitations may include model response quality, document
+processing limitations, and the performance of the application on
+different types of study materials.
 
 ## Future improvements
 
-- List planned feature enhancements, architectural refactorings, or future capabilities.
+Possible future improvements include:
+
+- Quiz generation from study materials
+- Support for additional document formats
+- Improved source citation
+- Conversation history or memory
+- Improvements based on evaluation results
