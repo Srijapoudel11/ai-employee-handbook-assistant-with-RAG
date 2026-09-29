@@ -6,7 +6,7 @@ Starter template for the **Development of AI Applications** course final group p
 
 - Poudel Srijan (srijan.poudel@student.hamk.fi )
 - Luitel Subham (email@example.com)
-- Imran Mohammad (email@example.com)
+- Imran Mohammad (amk1002049@student.hamk.fi)
 
 ## Problem
 
