@@ -5,7 +5,7 @@ Starter template for the **Development of AI Applications** course final group p
 ## Team members
 
 - Poudel Srijan (srijan.poudel@student.hamk.fi )
-- Luitel Subham (email@example.com)
+- Luitel Subham (luitelsubham86@gmail.com)(amk1004106@student.hamk.fi)
 - Imran Mohammad (amk1002049@student.hamk.fi)
 
 ## Problem
@@ -192,3 +192,7 @@ Possible future improvements include:
 - Improved source citation
 - Conversation history or memory
 - Improvements based on evaluation results
+- Automatic flashcard generation
+- Improved document retrieval and ranking
+- Support for multilingual questions and answers
+- Personalized study recommendations
