@@ -19,6 +19,16 @@ def build_ui() -> gr.Blocks:
             Ask questions about workplace policies, working hours, annual leave, sick leave, remote work, and company procedures.
             """
         )
+        gr.Markdown(
+            """
+            ### How to Use
+            1. Enter your question about company policies.
+            2. Click **Ask AI** to receive an answer.
+            3. Check the **Handbook Source** for the relevant policy section.
+            4. Click **Clear** to ask a new question.
+            """
+        
+        )
 
         with gr.Row():
             user_input = gr.Textbox(
