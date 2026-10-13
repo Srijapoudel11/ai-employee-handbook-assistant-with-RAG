@@ -95,3 +95,48 @@ def generate_response(user_message: str, service: Optional[AIService] = None) ->
     active_service = service or AIService()
     response = active_service.process_message(user_message)
     return response.content
+
+    
+def generate_demo_handbook_response(user_message: str) -> tuple[str, str]:
+    """
+    Temporarily connects the handbook AI model to Gradio.
+    Uses fictional sample policies until RAG is ready.
+    """
+
+    if not user_message or not user_message.strip():
+        return "Please enter a message before sending.", ""
+
+    demo_context = (
+        "Working Hours: Employees work Monday to Friday, "
+        "9 AM to 5 PM.\n"
+        "Remote Work: Employees can work remotely up to "
+        "two days per week with supervisor approval."
+    )
+
+    try:
+        client = OllamaModelClient()
+
+        answer = client.generate_handbook_answer(
+            user_message.strip(),
+            demo_context
+        )
+
+        source = (
+            "DEMO ONLY - Fictional sample handbook information. "
+            "RAG retrieval is not connected yet."
+        )
+
+        return answer, source
+
+    except OllamaConnectionError:
+        return "Could not connect to Ollama. Check that Ollama is running.", ""
+
+    except ModelNotFoundError:
+        return "The configured AI model is not available in Ollama.", ""
+
+    except ModelClientError:
+        return "An error occurred while communicating with the AI model.", ""
+
+    except Exception:
+        return "An unexpected application error occurred.", ""
+

@@ -1,5 +1,5 @@
 import gradio as gr
-from src.services.ai_service import generate_response
+from src.services.ai_service import generate_demo_handbook_response
 
 
 def build_ui() -> gr.Blocks:
@@ -61,15 +61,16 @@ def build_ui() -> gr.Blocks:
         )
         gr.ClearButton(components=[user_input, output_box, source_box], value="Clear")
         # Connect UI actions exclusively to the service layer function
+        
         submit_btn.click(
-            fn=generate_response,
+            fn=generate_demo_handbook_response,
             inputs=user_input,
-            outputs=output_box,
-        )
-        user_input.submit(
-            fn=generate_response,
-            inputs=user_input,
-            outputs=output_box,
+            outputs=[output_box, source_box],
         )
 
+        user_input.submit(
+            fn=generate_demo_handbook_response,
+            inputs=user_input,
+            outputs=[output_box, source_box],
+        )
     return demo
