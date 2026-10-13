@@ -1,6 +1,7 @@
 from typing import Optional
 import ollama
 from src.config import config
+from src.models.handbook_prompt import build_handbook_prompt
 
 
 class ModelClientError(Exception):
@@ -25,7 +26,17 @@ class OllamaModelClient:
         self.base_url = base_url or config.ollama_base_url
         self.model_name = model_name or config.model_name
         self._client = ollama.Client(host=self.base_url)
+    def generate_handbook_answer(
+        self, question: str, handbook_context: str
+    ) -> str:
+        """
+        Generates an answer using handbook information retrieved by RAG.
+        """
+        if not handbook_context or not handbook_context.strip():
+            return "I could not find this information in the handbook."
 
+        prompt = build_handbook_prompt(question, handbook_context)
+        return self.generate(prompt)
     def generate(self, prompt: str) -> str:
         """
         Sends a user prompt to local Ollama model and returns generated response text.
