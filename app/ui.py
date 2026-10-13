@@ -19,6 +19,13 @@ def build_ui() -> gr.Blocks:
             Ask questions about workplace policies, working hours, annual leave, sick leave, remote work, and company procedures.
             """
         )
+
+        gr.Markdown(
+            "**Demo Mode:** This version uses fictional employee "
+            "handbook information for testing. Actual handbook "
+            "retrieval and source citations will be available "
+            "after RAG integration."
+        )
         gr.Markdown(
             """
             ### How to Use
