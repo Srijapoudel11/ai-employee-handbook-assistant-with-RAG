@@ -1,5 +1,5 @@
 import gradio as gr
-from src.services.ai_service import generate_demo_handbook_response
+from src.services.ai_service import generate_rag_handbook_response
 
 
 def build_ui() -> gr.Blocks:
@@ -21,10 +21,10 @@ def build_ui() -> gr.Blocks:
         )
 
         gr.Markdown(
-            "**Demo Mode:** This version uses fictional employee "
-            "handbook information for testing. Actual handbook "
-            "retrieval and source citations will be available "
-            "after RAG integration."
+            "**Sample Handbook:** This assistant uses a fictional "
+            "Fun Digital Solutions employee handbook. "
+            "AI answers are based on retrieved handbook information, "
+            "and the relevant source section is displayed below."
         )
         gr.Markdown(
             """
@@ -70,13 +70,13 @@ def build_ui() -> gr.Blocks:
         # Connect UI actions exclusively to the service layer function
         
         submit_btn.click(
-            fn=generate_demo_handbook_response,
+            fn=generate_rag_handbook_response,
             inputs=user_input,
             outputs=[output_box, source_box],
         )
 
         user_input.submit(
-            fn=generate_demo_handbook_response,
+            fn=generate_rag_handbook_response,
             inputs=user_input,
             outputs=[output_box, source_box],
         )
