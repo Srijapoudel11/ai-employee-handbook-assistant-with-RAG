@@ -67,9 +67,8 @@ Gradio UI
 
 ## Model
 
-
-- **Model used:** We plan to use `llama3.2` through Ollama.
-- **Selection rationale:** We selected `llama3.2` as our initial model because it can run locally through Ollama and is suitable for building and testing our AI Employee Handbook Assistant. It will be used to understand employee questions and generate clear answers based on the information retrieved from the employee handbook. We may evaluate the model during development and adjust the model choice if necessary.
+- **Model used:** `llama3.2` through Ollama.
+- **Selection rationale:** We selected Llama 3.2 because it runs locally through Ollama and can generate natural-language answers using retrieved employee handbook information. The model is connected to our Gradio interface through the AI service layer.
 
 ## Additional AI capability
 
@@ -150,27 +149,39 @@ pytest
 
 ## Evaluation
 
-The application will be evaluated after implementation using different test cases to check whether it can retrieve relevant information from the employee handbook and generate useful answers.
+The AI Employee Handbook Assistant was evaluated using automated tests and manual testing with the fictional Fun Digital Solutions employee handbook.
 
-We plan to test:
+### Automated testing
 
-- Questions that have clear answers in the employee handbook
-- Questions where the requested information is not available in the handbook
-- Different ways of asking about the same workplace policy
-- Empty or invalid questions
-- Whether RAG retrieves the correct handbook information
-- Whether the generated answer is supported by the retrieved information
-- Whether the application shows the relevant source or handbook section
-- Model or application failure scenarios
+We ran `python -m pytest` after integrating the Gradio UI, Ollama model, and RAG code. All **10 automated tests passed**. The tests cover the AI service, demo integration, and handbook model functions.
 
-Detailed evaluation results will be added after the application has
-been implemented and tested. Starter test cases can be found in [`evaluation/test_cases.json`](evaluation/test_cases.json).
+### Manual RAG testing
 
-Refer to [`evaluation/README.md`](evaluation/README.md) for guidelines on defining success, edge cases, and failure scenarios.
+| Test case | Observed result | Status |
+|---|---|---|
+| Load the Word handbook | Successfully extracted 10 handbook sections | Passed |
+| Retrieve annual leave information | Retrieved Section 3. Annual Leave, with a match score of 9 | Passed |
+| Ask about annual leave in Gradio | AI correctly answered 25 working days of paid annual leave | Passed |
+| Display the handbook source | Displayed `3. Annual Leave — employee_handbook.docx` | Passed |
+| Ask about a cafeteria lunch menu | AI stated that the information was not found and displayed no source | Passed |
+
+### Evaluation observations
+
+The application successfully retrieved relevant handbook information and generated a grounded answer for the tested annual leave question. It also handled the tested unsupported question without inventing a policy.
+
+One issue was observed: the AI mentioned an unverified subsection, `3.2`, in its annual leave answer. This shows that source references still require careful verification. Additional question variations and failure scenarios have not yet been fully evaluated.
+
+Further evaluation guidance and test cases are available in [`evaluation/README.md`](evaluation/README.md) and [`evaluation/test_cases.json`](evaluation/test_cases.json).
 
 ## Known limitations
 
-The project is currently in the proposal and early development stage, so the final limitations will be documented after implementation and testing.
+The AI Employee Handbook Assistant has the following known limitations:
+
+- **Keyword-based retrieval:** The RAG system uses keyword matching instead of semantic embeddings. Questions using unfamiliar wording may not retrieve the correct handbook section.
+- **Single handbook:** The application currently uses one fictional employee handbook in DOCX format.
+- **Source accuracy:** The AI may occasionally mention an incorrect subsection. During testing, it referred to Section 3.2, which was not verified.
+- **Document formatting:** The handbook loader reads paragraphs under Word heading styles but does not extract information from tables.
+- **Limited evaluation:** The application passed 10 automated tests and the documented manual tests, but additional question variations and error scenarios have not been fully evaluated.
 
 ## Future improvements
 

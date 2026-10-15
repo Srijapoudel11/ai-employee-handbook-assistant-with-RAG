@@ -1,26 +1,43 @@
+
 [
   {
     "id": "case-01",
     "category": "successful_case",
-    "input": "Summarize the key objectives of this project in two sentences.",
-    "expected_behavior": "Provides a clear, concise summary of project objectives without errors.",
-    "actual_result": "",
-    "status": "pending"
+    "input": "How many days of annual leave do employees receive?",
+    "expected_behavior": "Answers 25 working days of paid annual leave and displays Section 3. Annual Leave as the source.",
+    "actual_result": "AI answered 25 working days of paid annual leave and displayed Section 3. Annual Leave as the handbook source.",
+    "status": "pass"
   },
   {
     "id": "case-02",
-    "category": "difficult_case",
-    "input": "Explain how quantum computing works to a 5-year-old using simple analogies.",
-    "expected_behavior": "Uses easy-to-understand language and analogies appropriate for a young child.",
-    "actual_result": "",
-    "status": "pending"
+    "category": "successful_case",
+    "input": "Can employees work remotely?",
+    "expected_behavior": "Explains the remote work policy using the handbook and identifies Section 5. Remote Work.",
+    "actual_result": "AI answered that employees may work remotely up to three days per week with manager approval and displayed Section 5. Remote Work.",
+    "status": "pass"
   },
   {
     "id": "case-03",
+    "category": "difficult_case",
+    "input": "How much holiday time am I entitled to?",
+    "expected_behavior": "Understands the alternative wording and retrieves the annual leave policy without inventing information.",
+    "actual_result": "AI answered 25 working days of paid annual leave and displayed Section 3. Annual Leave.",
+    "status": "pass"
+  },
+  {
+    "id": "case-04",
+    "category": "failure_case",
+    "input": "What is the cafeteria lunch menu?",
+    "expected_behavior": "States that the information is not available in the handbook and does not invent a lunch menu.",
+    "actual_result": "AI responded that it could not find the information in the handbook. No source was displayed.",
+    "status": "pass"
+  },
+  {
+    "id": "case-05",
     "category": "failure_case",
     "input": "",
-    "expected_behavior": "Gracefully rejects empty input with a friendly user error message.",
-    "actual_result": "",
-    "status": "pending"
+    "expected_behavior": "Displays a friendly message asking the user to enter a question.",
+    "actual_result": "AI displayed 'Please enter a message before sending.' The source was empty.",
+    "status": "pass"
   }
 ]
