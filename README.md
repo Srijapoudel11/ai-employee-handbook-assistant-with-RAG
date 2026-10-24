@@ -203,6 +203,13 @@ Our final group presentation demonstrates the AI Employee Handbook Assistant wit
 
 All three group members explain their individual contributions, demonstrate the application, and discuss its architecture, testing, and limitations.
 
+
+## Recorded Group Presentation
+
+Our final group presentation demonstrates the AI Employee Handbook Assistant with RAG.
+
+All three group members explain their individual contributions, demonstrate the application, and discuss its architecture, testing, and limitations.
+
 **Group Members:**
 - Srijan Poudel — Gradio User Interface and System Integration
 - Subham Luitel — Ollama Model Integration and Prompt Engineering
@@ -210,4 +217,4 @@ All three group members explain their individual contributions, demonstrate the 
 
 ### Watch Our Presentation
 
-[Watch the Final Group Presentation]((https://drive.google.com/file/d/1b_AVv9hV53hwbENUz6Y0jfV2dECQrXKQ/view?usp=sharing))
+[Watch the Final Group Presentation](https://drive.google.com/file/d/1b_AVv9hV53hwbENUz6Y0jfV2dECQrXKQ/view?usp=sharing)
